@@ -13,7 +13,10 @@ function Navbar() {
           >
             <h1>H A C K F L I X</h1>
           </Link>
-          <div>
+          <div className="d-flex flex-row">
+            <Link to={"/searchmovies"}>
+              <i className="bi bi-search text-warning mx-3"></i>
+            </Link>
             <NavDropdown
               title="Opciones"
               className="text-warning"

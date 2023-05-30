@@ -41,6 +41,7 @@ function AboutUs() {
           <a
             className="text-warning ms-2"
             href="https://github.com/joaquingonjua"
+            target="_blank"
           >
             @joaquingonjua
           </a>

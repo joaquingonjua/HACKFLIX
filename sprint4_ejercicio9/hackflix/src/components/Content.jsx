@@ -24,11 +24,11 @@ function Content() {
   useEffect(() => {
     async function getMovies() {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=${count}&vote_average.gte=${
+        `https://api.themoviedb.org/3/discover/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte=${
           rates - 0.99
         }&limit=20`
       );
-      setMovies(response.data.results); //... desestructura el array
+      setMovies(response.data.results); //... desestructura el array // No se parametriza la pagina en ese effect, para que siempre te filtre segun el rating desde la pagina 1
     }
     getMovies();
   }, [rates]);
