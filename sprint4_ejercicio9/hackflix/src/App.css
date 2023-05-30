@@ -1,0 +1,37 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(assets/bignoodletitling/big_noodle_titling_oblique.ttf);
+}
+
+.font-titles {
+  font-family: myFirstFont;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+body {
+  background-color: #000000;
+}
+
+#movie-card {
+  scale: 1;
+  transition: ease 0.5s;
+}
+
+#movie-card:hover {
+  scale: 1.05;
+  transition: ease 0.5s;
+}
+
+.spacing {
+  letter-spacing: 3px;
+}
+
+.bg-modal {
+  backdrop-filter: blur(1.8px);
+}
