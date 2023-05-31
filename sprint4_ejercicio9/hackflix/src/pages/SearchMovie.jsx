@@ -11,25 +11,25 @@ function SearchMovie() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (writtenTitle === "") {
-      setPage([]);
-    } else {
-      async function getMovies() {
-        const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&query=${writtenTitle}&page=1&include_adult=false`
-        );
-        setFilteredMovies(response.data.results);
-      }
-      getMovies();
+    async function getMovies() {
+      const response = await axios.get(
+        writtenTitle === ""
+          ? `https://api.themoviedb.org/3/discover/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&limit=20`
+          : `https://api.themoviedb.org/3/search/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&query=${writtenTitle}&page=1&include_adult=false`
+      );
+      setFilteredMovies(response.data.results);
     }
+    getMovies();
   }, [writtenTitle]);
 
   useEffect(() => {
     async function getMovies() {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&limit=20`
+        writtenTitle === ""
+          ? `https://api.themoviedb.org/3/discover/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&limit=20`
+          : `https://api.themoviedb.org/3/search/movie?api_key=213a151ab30e0e62d1aa5e5b570c94a4&language=es-ES&query=${writtenTitle}&page=${page}&include_adult=false`
       );
-      setFilteredMovies(response.data.results); //... desestructura el array
+      setFilteredMovies([...filteredMovies, ...response.data.results]);
     }
     getMovies();
   }, [page]);
@@ -37,6 +37,7 @@ function SearchMovie() {
   return (
     <>
       <div className="container">
+        <BottomScrollListener onBottom={() => setPage(page + 1)} />
         <div className="input-group my-4">
           <span
             className="input-group-text bg-black bg-opacity-10 border-warning"
