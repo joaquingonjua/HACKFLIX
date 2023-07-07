@@ -1,5 +1,6 @@
 import "../App.css";
 import React, { useState } from "react";
+import { nanoid } from "nanoid";
 
 import MovieModal from "./Modal";
 
@@ -7,10 +8,7 @@ function Movie({ movies }) {
   return (
     <>
       {movies.map((movie) => (
-        <MovieModal
-          key={Math.floor(String(Math.random() * 10000000000000000))}
-          movie={movie}
-        />
+        <MovieModal key={nanoid()} movie={movie} />
       ))}
     </>
   );

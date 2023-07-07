@@ -83,7 +83,10 @@ function movieDetails() {
                       Generos
                     </p>
                     {movie.genres.map((genre) => (
-                      <small className="text-warning rounded border border-warning px-1 me-1">
+                      <small
+                        key={genre.id}
+                        className="text-warning rounded border border-warning px-1 me-1"
+                      >
                         {genre.name}
                       </small>
                     ))}

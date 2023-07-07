@@ -1,0 +1,9 @@
+.carousel-style {
+  max-height: 100vh;
+  object-fit: cover;
+}
+
+.backdrop-styles {
+  height: 100vh;
+  object-fit: cover;
+}

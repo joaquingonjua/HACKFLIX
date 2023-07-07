@@ -9,7 +9,7 @@ function movieModal({ movie }) {
   const [lgShow, setLgShow] = useState(false);
   return (
     <>
-      <div className="col-3 my-3">
+      <div className="col-10 mx-auto col-sm-6 col-md-4 col-lg-3 my-3">
         <div
           className="card h-100 bg-warning bg-gradient"
           id="movie-card"
