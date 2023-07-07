@@ -9,7 +9,13 @@ function Header({ newMovies }) {
     if (newMovies) {
       let moviesToPush = [];
       for (let i = 0; i < 5; i++) {
-        moviesToPush.push(newMovies[Math.floor(Math.random() * 20)]);
+        let index = Math.floor(Math.random() * 20);
+        if (moviesToPush.includes(newMovies[index])) {
+          index = Math.floor(Math.random() * 20);
+        }
+        if (!moviesToPush.includes(newMovies[index])) {
+          moviesToPush.push(newMovies[index]);
+        }
       }
       setCarouselMovies(moviesToPush);
     }
@@ -21,11 +27,16 @@ function Header({ newMovies }) {
         {carouselMovies.map((movie) => (
           <Carousel.Item key={movie.id}>
             <img
-              className="d-block w-100 backdrop-styles"
+              className="d-block w-100 backdrop-styles d-none d-sm-block"
               src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
               alt="First slide"
             />
-            <Carousel.Caption>
+            <img
+              className="d-block w-100 backdrop-styles d-block d-sm-none"
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              alt="First slide"
+            />
+            <Carousel.Caption className="d-none d-sm-block">
               <h3>{movie.title}</h3>
               <p>{movie.vote_average}</p>
             </Carousel.Caption>
